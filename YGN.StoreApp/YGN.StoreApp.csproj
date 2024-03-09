@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\YGN.Services\YGN.Services.csproj" />
     <ProjectReference Include="..\YGN.StoreApp.Entities\YGN.StoreApp.Entities.csproj" />
     <ProjectReference Include="..\YGN.StoreApp.Repositories\YGN.StoreApp.Repositories.csproj" />
   </ItemGroup>

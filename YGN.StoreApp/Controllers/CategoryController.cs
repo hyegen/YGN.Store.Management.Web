@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YGN.Services.Contracts.Manager;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Repositories.Contracts;
 
@@ -6,15 +7,16 @@ namespace YGN.StoreApp.Controllers
 {
     public class CategoryController : Controller
     {
-        private IRepositoryManager _repositoryManager;
-        public CategoryController(IRepositoryManager repositoryManager)
+        private IServiceManager _serviceManager;
+
+        public CategoryController(IServiceManager serviceManager)
         {
-            _repositoryManager = repositoryManager;
+            _serviceManager = serviceManager;
         }
 
         public IActionResult Index()
         {
-            var result = _repositoryManager.Category.FindAll(false);
+            var result = _serviceManager.CategoryService.GetAllCategories(false);
             return View(result);
         }
     }

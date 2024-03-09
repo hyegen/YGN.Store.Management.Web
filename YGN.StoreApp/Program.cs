@@ -1,5 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
+using YGN.Services.Concrete;
+using YGN.Services.Contracts;
+using YGN.Services.Contracts.Manager;
 using YGN.StoreApp.Repositories;
 using YGN.StoreApp.Repositories.Contracts;
 
@@ -17,6 +20,10 @@ builder.Services.AddDbContext<RepositoryContext>(options =>
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
 var app = builder.Build();
 
