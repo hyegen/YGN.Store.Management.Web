@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace YGN.StoreApp.Entities.Models
 {
-    internal class Test
+    public class Category
     {
-        public int MyProperty { get; set; }
+        public int CategoryId { get; set; }
+        public string? CategoryName { get; set; } = string.Empty;
     }
 }

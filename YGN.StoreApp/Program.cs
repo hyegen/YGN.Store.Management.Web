@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using YGN.StoreApp.Repositories;
+using YGN.StoreApp.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ builder.Services.AddDbContext<RepositoryContext>(options =>
 
         b => b.MigrationsAssembly("YGN.StoreApp"));
 });
+
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 
