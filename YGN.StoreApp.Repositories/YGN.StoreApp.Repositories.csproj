@@ -15,4 +15,8 @@
     <ProjectReference Include="..\YGN.StoreApp.Entities\YGN.StoreApp.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
 </Project>
