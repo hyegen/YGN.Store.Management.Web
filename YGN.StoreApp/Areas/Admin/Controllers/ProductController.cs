@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
 using YGN.Services.Contracts.Manager;
+using YGN.StoreApp.Entities.Dtos;
 using YGN.StoreApp.Entities.Models;
 
 namespace YGN.StoreApp.Areas.Admin.Controllers
@@ -9,7 +11,6 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IServiceManager _serviceManager;
-
         public ProductController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -22,16 +23,18 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
+            ViewBag.Categories =
+                new SelectList(_serviceManager.CategoryService.GetAllCategories(false),"CategoryId","CategoryName","1");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] Product product)
+        public IActionResult Create([FromForm] ProductDtoForInsertion productDto)
         {
             if (ModelState.IsValid)
             {
-                _serviceManager.ProductService.CreateProduct(product);
+                _serviceManager.ProductService.CreateProduct(productDto);
                 return RedirectToAction("Index");
             }
             return View();

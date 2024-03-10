@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YGN.Services.Contracts;
+using YGN.StoreApp.Entities.Dtos;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Repositories.Contracts;
 
@@ -12,14 +14,16 @@ namespace YGN.Services.Concrete
     public class ProductManager : IProductService
     {
         private readonly IRepositoryManager _repositoryManager;
-
-        public ProductManager(IRepositoryManager repositoryManager)
+        private readonly IMapper _mapper;
+        public ProductManager(IRepositoryManager repositoryManager, IMapper mapper)
         {
             _repositoryManager = repositoryManager;
+            _mapper = mapper;
         }
 
-        public void CreateProduct(Product product)
+        public void CreateProduct(ProductDtoForInsertion productDto)
         {
+            Product product = _mapper.Map<Product>(productDto);
             _repositoryManager.Product.Create(product);
             _repositoryManager.Save();
         }
@@ -32,7 +36,6 @@ namespace YGN.Services.Concrete
                 _repositoryManager.Product.DeleteOneProduct(product);
                 _repositoryManager.Save();
             }
-
         }
 
         public IEnumerable<Product> GetAllProducts(bool trackChanges)

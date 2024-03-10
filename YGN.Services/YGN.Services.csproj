@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YGN.StoreApp.Entities\YGN.StoreApp.Entities.csproj" />
     <ProjectReference Include="..\YGN.StoreApp.Repositories\YGN.StoreApp.Repositories.csproj" />
   </ItemGroup>

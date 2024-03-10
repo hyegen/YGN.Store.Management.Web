@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YGN.StoreApp.Entities.Dtos;
 using YGN.StoreApp.Entities.Models;
 
 namespace YGN.Services.Contracts
@@ -11,7 +12,7 @@ namespace YGN.Services.Contracts
     {
         IEnumerable<Product> GetAllProducts(bool trackChanges);
         Product? GetOneProduct(int id,bool trackChanges);
-        void CreateProduct(Product product);
+        void CreateProduct(ProductDtoForInsertion productDto);
         void UpdateOneProduct(Product product);
         void DeleteOneProduct(int id);
     }
