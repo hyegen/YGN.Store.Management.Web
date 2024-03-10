@@ -38,11 +38,16 @@ app.UseStaticFiles(); //wwwroot
 
 app.UseRouting();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
+        );
+    endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+});
+
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapGet("/btk", () => "BTK Akademi");
 app.Run();
