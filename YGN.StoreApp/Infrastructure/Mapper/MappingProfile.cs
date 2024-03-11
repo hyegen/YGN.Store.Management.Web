@@ -9,6 +9,7 @@ namespace YGN.StoreApp.Infrastructure.Mapper
         public MappingProfile()
         {
             CreateMap<ProductDtoForInsertion, Product>();
+            CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
         }
     }
 }

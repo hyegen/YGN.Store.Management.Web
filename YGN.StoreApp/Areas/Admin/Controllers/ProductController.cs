@@ -23,37 +23,57 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
-            ViewBag.Categories =
-                new SelectList(_serviceManager.CategoryService.GetAllCategories(false),"CategoryId","CategoryName","1");
+            ViewBag.Categories = GetCategoriesSelectList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([FromForm] ProductDtoForInsertion productDto)
+        public async Task<IActionResult> Create([FromForm] ProductDtoForInsertion productDto, IFormFile file)
         {
             if (ModelState.IsValid)
             {
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                productDto.ImageUrl = string.Concat("/images/", file.FileName);
                 _serviceManager.ProductService.CreateProduct(productDto);
                 return RedirectToAction("Index");
             }
             return View();
 
         }
+        private SelectList GetCategoriesSelectList()
+        {
+            return new SelectList(_serviceManager.CategoryService.GetAllCategories(false), "CategoryId", "CategoryName", "1");
+        }
+
 
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
-            var model = _serviceManager.ProductService.GetOneProduct(id, false);
+            ViewBag.Categories = GetCategoriesSelectList();
+            var model = _serviceManager.ProductService.GetOneProductForUpdate(id, false);
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Product product)
+        public async Task<IActionResult> Update([FromForm] ProductDtoForUpdate productDto,IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                _serviceManager.ProductService.UpdateOneProduct(product);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                _serviceManager.ProductService.UpdateOneProduct(productDto);
                 return RedirectToAction("Index");
             }
             return View();

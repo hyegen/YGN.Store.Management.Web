@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using YGN.Services.Concrete;
 using YGN.Services.Contracts;
@@ -34,7 +33,6 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles(); //wwwroot
 
@@ -47,9 +45,28 @@ app.UseEndpoints(endpoints =>
         areaName: "Admin",
         pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
         );
-    endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 });
 
 app.UseAuthorization();
 
 app.Run();
+
+//app.UseHttpsRedirection();
+//app.UseStaticFiles(); //wwwroot
+
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapAreaControllerRoute(
+//        name: "Admin",
+//        areaName: "Admin",
+//        pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}"
+//        );
+//    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+//});
+
+//app.UseAuthorization();
+
+//app.UseRouting();
+
+//app.Run();

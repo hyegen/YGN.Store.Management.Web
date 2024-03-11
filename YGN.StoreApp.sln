@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YGN.StoreApp.Entities", "YG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YGN.StoreApp.Repositories", "YGN.StoreApp.Repositories\YGN.StoreApp.Repositories.csproj", "{5EC788B9-B108-4B90-A95F-DDCB28380237}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YGN.Services", "YGN.Services\YGN.Services.csproj", "{5209D695-EFE9-4D91-9DAC-891640CE09C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YGN.Services", "YGN.Services\YGN.Services.csproj", "{5209D695-EFE9-4D91-9DAC-891640CE09C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
