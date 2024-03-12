@@ -51,8 +51,6 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
         {
             return new SelectList(_serviceManager.CategoryService.GetAllCategories(false), "CategoryId", "CategoryName", "1");
         }
-
-
         public IActionResult Update([FromRoute(Name = "id")] int id)
         {
             ViewBag.Categories = GetCategoriesSelectList();
@@ -73,6 +71,7 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
                     await file.CopyToAsync(stream);
                 }
 
+                productDto.ImageUrl = string.Concat("/images/",file.FileName);
                 _serviceManager.ProductService.UpdateOneProduct(productDto);
                 return RedirectToAction("Index");
             }
