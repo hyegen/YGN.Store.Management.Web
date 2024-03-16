@@ -3,6 +3,7 @@ using YGN.Services.Concrete;
 using YGN.Services.Contracts;
 using YGN.Services.Contracts.Manager;
 using YGN.StoreApp.Entities.Models;
+using YGN.StoreApp.Models;
 using YGN.StoreApp.Repositories;
 using YGN.StoreApp.Repositories.Contracts;
 
@@ -33,7 +34,7 @@ builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
-builder.Services.AddSingleton<Cart>();
+builder.Services.AddScoped<Cart>(x => SessionCart.GetCart(x));
 
 builder.Services.AddAutoMapper(typeof(Program));
 
