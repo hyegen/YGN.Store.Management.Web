@@ -37,5 +37,8 @@ namespace YGN.StoreApp.Entities.Models
 
         public virtual void Clear() => Lines.Clear();
 
+        public string ComputeTotalValueOfProductsInBasket() => Lines.Count().ToString();
+
+
     }
 }
