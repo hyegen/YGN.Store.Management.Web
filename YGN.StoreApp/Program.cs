@@ -5,6 +5,7 @@ using YGN.Services.Contracts.Manager;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Models;
 using YGN.StoreApp.Repositories;
+using YGN.StoreApp.Repositories.Concrete;
 using YGN.StoreApp.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,10 +30,12 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<IOrderService, OrderManager>();
 
 builder.Services.AddScoped<Cart>(x => SessionCart.GetCart(x));
 

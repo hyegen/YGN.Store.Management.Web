@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Repositories.Contracts;
 
-namespace YGN.StoreApp.Repositories
+namespace YGN.StoreApp.Repositories.Concrete
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
@@ -26,6 +26,6 @@ namespace YGN.StoreApp.Repositories
         }
 
         public void UpdateOneProduct(Product entity) => Update(entity);
-     
+
     }
 }

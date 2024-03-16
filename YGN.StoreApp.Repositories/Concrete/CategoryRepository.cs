@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Repositories.Contracts;
 
-namespace YGN.StoreApp.Repositories
+namespace YGN.StoreApp.Repositories.Concrete
 {
     public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
     {

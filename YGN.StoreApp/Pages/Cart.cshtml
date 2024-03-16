@@ -39,11 +39,18 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="4" class="text-right">Total : </td>
+                <td colspan="4" class="text-right"><b>Total : </b></td>
                 <td class="text-right text-danger">
                     @Model.Cart?.ComputeTotalValue().ToString("c2")
                 </td>
             </tr>
         </tfoot>
     </table>
+    <div class="text-center my-3">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="@Model?.ReturnUrl">Continue Shopping</a>
+            <a class="btn btn-primary mx-2" asp-action="Checkout" asp-controller="Order">Checkout</a>
+        </div>
+    </div>
+
 </div>
