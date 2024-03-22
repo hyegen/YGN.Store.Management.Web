@@ -1,1 +1,1 @@
-*n-Tier Architecture, .Net Core, AutoMapper, Dependency Injection, 
+*n-Tier Architecture, .Net Core, AutoMapper, Dependency Injection
