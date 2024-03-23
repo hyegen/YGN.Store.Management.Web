@@ -11,8 +11,8 @@ using YGN.StoreApp.Repositories;
 namespace YGN.StoreApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20240316193405_start")]
-    partial class start
+    [Migration("20240323171030_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
