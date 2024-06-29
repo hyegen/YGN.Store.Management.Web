@@ -14,6 +14,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YGN.StoreApp.Repositories",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YGN.Services", "YGN.Services\YGN.Services.csproj", "{5209D695-EFE9-4D91-9DAC-891640CE09C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YGN.S-Management.Business", "YGN.S-Management.Business", "{B9F40272-4314-46D8-9E76-038A070129AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YGN.S-Management.UI", "YGN.S-Management.UI", "{CCB4DB25-1CA4-46AD-B17E-1AF089C95AC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YGN.S-Management.Entities", "YGN.S-Management.Entities", "{0EE29B82-BBF9-411F-B5C4-FBE0B365F26E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "YGN.S-Management.Repository", "YGN.S-Management.Repository", "{BA6412BA-EE91-4D6F-B0BE-B565A3217DCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +47,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{556E6553-F6FC-4C00-B7AB-B5816FDFD6F4} = {CCB4DB25-1CA4-46AD-B17E-1AF089C95AC0}
+		{D6B33211-A6C7-469F-851B-F7257AAF6C61} = {0EE29B82-BBF9-411F-B5C4-FBE0B365F26E}
+		{5EC788B9-B108-4B90-A95F-DDCB28380237} = {BA6412BA-EE91-4D6F-B0BE-B565A3217DCF}
+		{5209D695-EFE9-4D91-9DAC-891640CE09C2} = {B9F40272-4314-46D8-9E76-038A070129AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE07AF05-8CE1-4AFB-B666-A667D490F5A7}

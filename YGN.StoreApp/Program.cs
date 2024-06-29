@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using YGN.StoreApp.Infrastructure.Extensions;
-using YGN.StoreApp.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
