@@ -38,10 +38,6 @@ namespace YGN.StoreApp.Repositories
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.ApplyConfiguration(new ProductConfig());
-            //modelBuilder.ApplyConfiguration(new CategoryConfig());
-
-            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(RepositoryContext).Assembly);
         }
         public DbSet<Product> Products { get; set; }
