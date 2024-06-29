@@ -7,6 +7,9 @@ using YGN.StoreApp.Repositories.Concrete;
 using YGN.StoreApp.Repositories.Contracts;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Models;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace YGN.StoreApp.Infrastructure.Extensions
 {
@@ -14,11 +17,13 @@ namespace YGN.StoreApp.Infrastructure.Extensions
     {
         public static void ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = configuration.GetConnectionString("sqlconnection");
+
             services.AddDbContext<RepositoryContext>(options =>
             {
-                options.UseSqlite(configuration.GetConnectionString("sqlconnection"),
-                    b => b.MigrationsAssembly("YGN.StoreApp"));
+                options.UseSqlServer(connectionString);
             });
+
         }
         public static void ConfigureSession(this IServiceCollection services)
         {
