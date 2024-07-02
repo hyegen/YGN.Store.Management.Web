@@ -60,18 +60,22 @@ namespace YGN.StoreApp.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update([FromForm] ProductDtoForUpdate productDto,IFormFile file)
+        public async Task<IActionResult> Update([FromForm] ProductDtoForUpdate productDto, IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (file != null)
                 {
-                    await file.CopyToAsync(stream);
+                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", file.FileName);
+
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    productDto.ImageUrl = string.Concat("/images/", file.FileName);
                 }
 
-                productDto.ImageUrl = string.Concat("/images/",file.FileName);
                 _serviceManager.ProductService.UpdateOneProduct(productDto);
                 return RedirectToAction("Index");
             }

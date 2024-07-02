@@ -7,7 +7,7 @@
 <form method="post" asp-action="Update" enctype="multipart/form-data">
 
     <div class="text-danger" asp-validation-summary="All">
-        <input type="hidden" asp-for="ProductId"/>
+        <input type="hidden" asp-for="ProductId" />
     </div>
 
     <div class="form-group my-3">
@@ -32,13 +32,22 @@
     </div>
 
     <div class="form-group my-3">
-        <img class="rounded shadow" width="150" src="@Model?.ImageUrl"/>
+        <img class="rounded shadow" width="150" src="@Model?.ImageUrl" />
     </div>
 
+    @*     <div class="form-group my-3">
+    <label asp-for="ImageUrl"></label>
+    <input type="file" name="file" class="form-control" />
+    </div> *@
     <div class="form-group my-3">
-        <label asp-for="ImageUrl"></label>
-        <input type="file" name="file" class="form-control" />
+        <label asp-for="ImageUrl">Current Image URL</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" readonly />
     </div>
+    <div class="form-group my-3">
+        <label asp-for="ImageUrl">Update Image</label>
+        <input type="file" asp-for="ImageUrl" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
 
     <div class="form-group my-3">
         <div class="btn-group">
