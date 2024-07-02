@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using YGN.Services.Contracts;
 using YGN.StoreApp.Entities.Dtos;
 using YGN.StoreApp.Entities.Models;
+using YGN.StoreApp.Entities.RequestParameters;
 using YGN.StoreApp.Repositories.Contracts;
 
 namespace YGN.Services.Concrete
@@ -43,6 +44,20 @@ namespace YGN.Services.Concrete
             return _repositoryManager.Product.GetAllProducts(trackChanges);
         }
 
+        public IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
+        {
+            return _repositoryManager.Product.GetAllProductsWithDetails(p);
+        }
+
+        public IEnumerable<Product> GetLastestProducts(int n, bool trackChanges)
+        {
+            return _repositoryManager
+                .Product
+                .FindAll(trackChanges)
+                .OrderByDescending(x => x.ProductId)
+                .Take(n);
+        }
+
         public Product? GetOneProduct(int id, bool trackChanges)
         {
             var product = _repositoryManager.Product.GetOneProduct(id, trackChanges);
@@ -54,10 +69,17 @@ namespace YGN.Services.Concrete
 
         public ProductDtoForUpdate GetOneProductForUpdate(int id, bool trackChanges)
         {
-            var product = GetOneProduct(id,trackChanges);
-            var productDto=_mapper.Map<ProductDtoForUpdate>(product);
+            var product = GetOneProduct(id, trackChanges);
+            var productDto = _mapper.Map<ProductDtoForUpdate>(product);
 
             return productDto;
+        }
+
+        public IEnumerable<Product> GetShowcaseProducts(bool trackChanges)
+        {
+            var products = _repositoryManager.Product.GetShowcaseProducts(trackChanges);
+            //var products = GetShowcaseProducts(trackChanges);         //TODO => TRY IT
+            return products;
         }
 
         public void UpdateOneProduct(ProductDtoForUpdate productDto)
@@ -71,5 +93,7 @@ namespace YGN.Services.Concrete
             _repositoryManager.Product.UpdateOneProduct(entity);
             _repositoryManager.Save();
         }
+
+
     }
 }

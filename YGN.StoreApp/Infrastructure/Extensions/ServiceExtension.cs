@@ -7,9 +7,6 @@ using YGN.StoreApp.Repositories.Concrete;
 using YGN.StoreApp.Repositories.Contracts;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Models;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
-using Microsoft.Extensions.Options;
 
 namespace YGN.StoreApp.Infrastructure.Extensions
 {
@@ -49,6 +46,14 @@ namespace YGN.StoreApp.Infrastructure.Extensions
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IOrderService, OrderManager>();
+        }
+        public static void ConfigureRouting(this IServiceCollection services)
+        {
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+                options.AppendTrailingSlash = false;
+            });
         }
     }
 }

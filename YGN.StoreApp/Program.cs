@@ -4,10 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
 builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Services.ConfigureSession();
 builder.Services.ConfigureRepositoryRegistration();
 builder.Services.ConfigureServiceRegistration();
+builder.Services.ConfigureRouting();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -30,4 +32,5 @@ app.UseEndpoints(endpoints =>
     endpoints.MapRazorPages();
 });
 app.ConfigureAndCheckMigration();
+app.ConfigureLocalization();
 app.Run();

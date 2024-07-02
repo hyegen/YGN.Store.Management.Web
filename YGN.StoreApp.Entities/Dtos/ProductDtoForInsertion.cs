@@ -8,6 +8,6 @@ namespace YGN.StoreApp.Entities.Dtos
 {
     public record ProductDtoForInsertion : ProductDto
     {
-
+  
     }
 }
