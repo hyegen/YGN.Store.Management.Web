@@ -9,7 +9,8 @@ namespace YGN.StoreApp.Infrastructure.TagHelpers
     public class LastestProductTagHelper : TagHelper
     {
         private readonly IServiceManager _manager;
-
+        [HtmlAttributeName("number")]
+        public int Number { get; set; }
         public LastestProductTagHelper(IServiceManager manager)
         {
             _manager = manager;
@@ -26,10 +27,10 @@ namespace YGN.StoreApp.Infrastructure.TagHelpers
             icon.Attributes.Add("class", "fa fa-box text-secondary");
 
             h6.InnerHtml.AppendHtml(icon);
-            h6.InnerHtml.AppendHtml("Lastest Products");
+            h6.InnerHtml.AppendHtml(" Lastest Products");
 
             TagBuilder ul = new TagBuilder("ul");
-            var products = _manager.ProductService.GetLastestProducts(5, false);
+            var products = _manager.ProductService.GetLastestProducts(Number, false);
             foreach (Product product in products)
             {
                 TagBuilder li = new TagBuilder("li");

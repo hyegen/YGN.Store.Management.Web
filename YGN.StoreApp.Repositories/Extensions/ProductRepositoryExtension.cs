@@ -15,7 +15,6 @@ namespace YGN.StoreApp.Repositories.Extensions
                 return products;
             else
                 return products.Where(prd => prd.CategoryId.Equals(categoryId));
-
         }
         public static IQueryable<Product> FilteredBySearchTerm(this IQueryable<Product> products, string? searchTerm)
         {
@@ -27,9 +26,19 @@ namespace YGN.StoreApp.Repositories.Extensions
         public static IQueryable<Product> FilteredByPrice(this IQueryable<Product> products, int? minPrice, int maxPrice, bool isValidPrice)
         {
             if (isValidPrice)
+            {
                 return products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+            }
             else
+            {
                 return products;
+            }
+        }
+        public static IQueryable<Product> ToPaginate(this IQueryable<Product> products, int pageNumber, int pageSize)
+        {
+            return products
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
         }
     }
 }

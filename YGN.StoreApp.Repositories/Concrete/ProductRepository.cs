@@ -21,12 +21,12 @@ namespace YGN.StoreApp.Repositories.Concrete
         public IQueryable<Product> GetAllProducts(bool trackChanges) => FindAll(trackChanges);
         public IQueryable<Product> GetAllProductsWithDetails(ProductRequestParameters param)
         {
-            var a = _context
+            return _context
                 .Products
                 .FilteredByCategoryId(param.CategoryId)
                 .FilteredBySearchTerm(param.SearchTerm)
-                .FilteredByPrice(param.MinPrice,param.MaxPrice,param.isValidPrice);
-            return a;
+                .FilteredByPrice(param.MinPrice, param.MaxPrice, param.isValidPrice)
+                .ToPaginate(param.PageNumber, param.PageSize);
         }
 
         public Product? GetOneProduct(int id, bool trackChanges)
