@@ -7,6 +7,7 @@ using YGN.StoreApp.Repositories.Concrete;
 using YGN.StoreApp.Repositories.Contracts;
 using YGN.StoreApp.Entities.Models;
 using YGN.StoreApp.Models;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace YGN.StoreApp.Infrastructure.Extensions
 {
@@ -20,11 +21,10 @@ namespace YGN.StoreApp.Infrastructure.Extensions
             {
                 options.UseSqlServer(connectionString);
             });
-
         }
         public static void ConfigureSession(this IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
+            // services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 options.Cookie.Name = "YGN.Store.App.Session";

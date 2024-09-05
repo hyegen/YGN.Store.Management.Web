@@ -28,7 +28,6 @@ namespace YGN.StoreApp.Repositories.Concrete
                 .FilteredByPrice(param.MinPrice, param.MaxPrice, param.isValidPrice)
                 .ToPaginate(param.PageNumber, param.PageSize);
         }
-
         public Product? GetOneProduct(int id, bool trackChanges)
         {
             return FindByCondition(p => p.ProductId.Equals(id), trackChanges);
