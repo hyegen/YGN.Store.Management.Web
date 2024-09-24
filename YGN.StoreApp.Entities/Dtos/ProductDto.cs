@@ -18,6 +18,7 @@ namespace YGN.StoreApp.Entities.Dtos
         public string? Summary { get; init; } = string.Empty;
         public string? ImageUrl { get; set; }
         public int? CategoryId { get; init; }
+
         public bool ShowCase { get; set; }
     }
 }

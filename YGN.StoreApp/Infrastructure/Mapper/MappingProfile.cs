@@ -10,6 +10,7 @@ namespace YGN.StoreApp.Infrastructure.Mapper
         {
             CreateMap<ProductDtoForInsertion, Product>();
             CreateMap<ProductDtoForUpdate, Product>().ReverseMap();
+            CreateMap<ProductGetAllDto, Product>().ReverseMap();
         }
     }
 }

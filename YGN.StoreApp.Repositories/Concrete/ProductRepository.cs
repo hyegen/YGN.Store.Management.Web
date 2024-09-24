@@ -25,8 +25,8 @@ namespace YGN.StoreApp.Repositories.Concrete
                 .Products
                 .FilteredByCategoryId(param.CategoryId)
                 .FilteredBySearchTerm(param.SearchTerm)
-                .FilteredByPrice(param.MinPrice, param.MaxPrice, param.isValidPrice)
-                .ToPaginate(param.PageNumber, param.PageSize);
+                .FilteredByPrice(param.MinPrice, param.MaxPrice, param.isValidPrice);
+                //.ToPaginate(param.PageNumber, param.PageSize);
         }
         public Product? GetOneProduct(int id, bool trackChanges)
         {
@@ -38,5 +38,7 @@ namespace YGN.StoreApp.Repositories.Concrete
                 .Where(x => x.ShowCase.Equals(true));
         }
         public void UpdateOneProduct(Product entity) => Update(entity);
+
+
     }
 }

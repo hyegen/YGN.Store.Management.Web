@@ -44,9 +44,14 @@ namespace YGN.Services.Concrete
             return _repositoryManager.Product.GetAllProducts(trackChanges);
         }
 
-        public IEnumerable<Product> GetAllProductsWithDetails(ProductRequestParameters p)
+        public IEnumerable<ProductGetAllDto> GetAllProductsWithDetails(ProductRequestParameters p)
         {
-            return _repositoryManager.Product.GetAllProductsWithDetails(p);
+            var products = _repositoryManager.Product.GetAllProductsWithDetails(p);
+            // var allProductsDto=_mapper.Map<ProductGetAllDto>(products);
+
+            var allProductsDto = _mapper.Map<IEnumerable<ProductGetAllDto>>(products);
+
+            return allProductsDto;
         }
 
         public IEnumerable<Product> GetLastestProducts(int n, bool trackChanges)
@@ -75,11 +80,13 @@ namespace YGN.Services.Concrete
             return productDto;
         }
 
-        public IEnumerable<Product> GetShowcaseProducts(bool trackChanges)
+        public IEnumerable<ProductGetAllDto> GetShowcaseProducts(bool trackChanges)
         {
             var products = _repositoryManager.Product.GetShowcaseProducts(trackChanges);
             //var products = GetShowcaseProducts(trackChanges);         //TODO => TRY IT
-            return products;
+
+            var allProductDto = _mapper.Map<IEnumerable<ProductGetAllDto>>(products);
+            return allProductDto;
         }
 
         public void UpdateOneProduct(ProductDtoForUpdate productDto)

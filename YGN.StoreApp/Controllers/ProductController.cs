@@ -2,6 +2,9 @@
 using YGN.Services.Contracts.Manager;
 using YGN.StoreApp.Entities.RequestParameters;
 using YGN.StoreApp.Models;
+using YGN.StoreApp.Test;
+using X.PagedList;
+using YGN.StoreApp.Entities.Dtos;
 
 namespace YGN.StoreApp.Controllers
 {
@@ -13,21 +16,11 @@ namespace YGN.StoreApp.Controllers
         {
             _serviceManager = repositoryManager;
         }
-        public IActionResult Index(ProductRequestParameters p)
+        public IActionResult Index(ProductRequestParameters p, int page = 1, int pageSize = 6)
         {
-            var products = _serviceManager.ProductService.GetAllProductsWithDetails(p);
-            var pagination = new Pagination
-            {
-                CurrentPage = p.PageNumber,
-                ItemsPerPage = p.PageSize,
-                TotalItems = _serviceManager.ProductService.GetAllProducts(false).Count()
-            };
+            var products = _serviceManager.ProductService.GetAllProductsWithDetails(p).ToPagedList(page, pageSize);
 
-            return View(new ProductListViewModel()
-            {
-                Pagination = pagination,
-                Products = products
-            });
+            return View(products);
         }
         public IActionResult Get([FromRoute(Name = "id")] int id)
         {
