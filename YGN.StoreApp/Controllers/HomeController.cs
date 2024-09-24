@@ -26,15 +26,7 @@ namespace YGN.StoreApp.Controllers
         {
             return View();
         }
-        public class TestProduct
-        {
-            public string ProductCode { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public string SubCategory { get; set; }
-            public string ItemType { get; set; }
-            public string Price { get; set; }
-        }
+
 
     }
 }

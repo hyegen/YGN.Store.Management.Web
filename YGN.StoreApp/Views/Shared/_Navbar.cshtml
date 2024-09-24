@@ -1,5 +1,4 @@
-﻿
-<nav class="navbar border-bottom navbar-expand-lg bg-body-tertiary">
+﻿<nav class="navbar border-bottom navbar-expand-lg bg-body-tertiary">
     <div class="container">
         <a class="navbar-brand" href="/">
             <i class="fa-solid fa-store fa-2x text-secondary"></i>
@@ -12,8 +11,13 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" asp-controller="Product" asp-action="Index">Products (@await Component.InvokeAsync("ProductSummary"))</a>
+                <li class="nav-item" onmouseover="showProducts()" onmouseout="hideProducts()">
+                    <a class="nav-link active" aria-current="page" asp-controller="Product" asp-action="Index">Products</a>
+                    <div class="product-popup" id="productPopup">
+                        <a class="dropdown-item" aria-current="page" asp-controller="Category" asp-action="Index">Kategoriler</a>
+                        <a class="dropdown-item" href="/Urun2">Ürün 2</a>
+                        <a class="dropdown-item" href="/Urun3">Ürün 3</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Category" asp-action="Index">Categories</a>
@@ -24,18 +28,50 @@
             </ul>
 
             <ul class="navbar-nav text-white">
-
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" asp-area="" asp-page="/Cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                         Cart (@await Component.InvokeAsync("CartSummary"))
                     </a>
                 </li>
-@* 
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" asp-area="Admin" asp-controller="Dashboard" asp-action="Index" >Admin</a>
-                </li> *@
             </ul>
         </div>
     </div>
 </nav>
+
+<style>
+    .product-popup {
+        display: none; 
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .nav-item {
+        position: relative; 
+    }
+
+    .dropdown-item {
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #000; 
+    }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0; 
+        }
+</style>
+
+<script>
+    function showProducts() {
+        document.getElementById('productPopup').style.display = 'block';
+    }
+
+    function hideProducts() {
+        document.getElementById('productPopup').style.display = 'none';
+    }
+</script>
