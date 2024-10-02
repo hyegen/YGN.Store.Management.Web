@@ -29,6 +29,45 @@ namespace YGN.StoreApp.Entities.Models
                 line.Quantity += quantity;
             }
         }
+        public virtual void IncreaseQuantity(Product product, int quantity)
+        {
+            CartLine? line = Lines.Where(x => x.Product.ProductId.Equals(product.ProductId)).FirstOrDefault();
+            if (line is null)
+            {
+                Lines.Add(new CartLine()
+                {
+                    Product = product,
+                    Quantity = quantity
+                });
+            }
+            else
+            {
+                line.Quantity += quantity;
+            }
+        }
+        public virtual void DecreaseQuantity(Product product, int quantity)
+        {
+            CartLine? line = Lines.Where(x => x.Product.ProductId.Equals(product.ProductId)).FirstOrDefault();
+
+            if (line.Quantity == 1)
+            {
+                var a = Lines.Where(x => x.Product.ProductId.Equals(product.ProductId)).FirstOrDefault();
+                Lines.Remove(a);
+            }
+
+            if (line is null)
+            {
+                Lines.Add(new CartLine()
+                {
+                    Product = product,
+                    Quantity = quantity
+                });
+            }
+            else
+            {
+                line.Quantity -= quantity;
+            }
+        }
 
         public virtual void RemoveLine(Product product) =>
             Lines.RemoveAll(x => x.Product.ProductId.Equals(product.ProductId));

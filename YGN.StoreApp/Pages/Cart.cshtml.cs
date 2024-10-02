@@ -16,12 +16,10 @@ namespace YGN.StoreApp.Pages
             _manager = manager;
             Cart = cartService;
         }
-
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
         }
-
         public IActionResult OnPost(int productId, string returnUrl)
         {
             Product? product = _manager
@@ -32,15 +30,37 @@ namespace YGN.StoreApp.Pages
             {
                 Cart.AddItem(product, 1);
             }
-            return RedirectToPage(new { returnUrl = returnUrl }); //returnUrl
+            return RedirectToPage(new { returnUrl = returnUrl });
         }
-
-        //asp-page-handler will be use
         public IActionResult OnPostRemove(int id, string returnUrl)
         {
             Cart.RemoveLine(Cart.Lines.First(x => x.Product.ProductId.Equals(id)).Product);
 
             return Page();
+        }
+        public IActionResult OnPostIncreaseOne(int productId, string returnUrl)
+        {
+            Product? product = _manager
+                .ProductService
+                .GetOneProduct(productId, false);
+
+            if (product is not null)
+            {
+                Cart.IncreaseQuantity(product, 1);
+            }
+            return RedirectToPage(new { returnUrl = returnUrl });
+        }
+        public IActionResult OnPostDecreaseOne(int productId, string returnUrl)
+        {
+            Product? product = _manager
+                .ProductService
+                .GetOneProduct(productId, false);
+
+            if (product is not null)
+            {
+                Cart.DecreaseQuantity(product, 1);
+            }
+            return RedirectToPage(new { returnUrl = returnUrl });
         }
     }
 }

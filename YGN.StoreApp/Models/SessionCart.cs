@@ -8,7 +8,6 @@ namespace YGN.StoreApp.Models
     {
         [JsonIgnore]
         public ISession Session { get; set; }
-
         public static Cart GetCart(IServiceProvider services)
         {
             ISession? session = services.GetRequiredService<IHttpContextAccessor>()
@@ -18,21 +17,30 @@ namespace YGN.StoreApp.Models
             cart.Session = session;
             return cart;
         }
+
         public override void AddItem(Product product, int quantity)
         {
             base.AddItem(product, quantity);
             Session?.SetJson<SessionCart>("cart", this);
         }
-
         public override void Clear()
         {
             base.Clear();
             Session?.Remove("cart");
         }
-
         public override void RemoveLine(Product product)
         {
             base.RemoveLine(product);
+            Session?.SetJson<SessionCart>("cart", this);
+        }
+        public override void IncreaseQuantity(Product product, int quantity)
+        {
+            base.IncreaseQuantity(product, quantity);
+            Session?.SetJson<SessionCart>("cart", this);
+        }
+        public override void DecreaseQuantity(Product product, int quantity)
+        {
+            base.DecreaseQuantity(product, quantity);
             Session?.SetJson<SessionCart>("cart", this);
         }
     }
