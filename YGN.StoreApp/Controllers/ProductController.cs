@@ -20,6 +20,10 @@ namespace YGN.StoreApp.Controllers
         {
             var products = _serviceManager.ProductService.GetAllProductsWithDetails(p).ToPagedList(page, pageSize);
 
+            ViewBag.MinPrice = p.MinPrice;
+            ViewBag.MaxPrice = p.MaxPrice;
+            ViewBag.SearchTerm = p.SearchTerm;
+
             return View(products);
         }
         public IActionResult Get([FromRoute(Name = "id")] int id)

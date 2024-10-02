@@ -1,5 +1,10 @@
 ﻿@* @model IEnumerable<Product> *@
-    @model ProductListViewModel
+@* @model ProductListViewModel *@
+
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<YGN.StoreApp.Entities.Dtos.ProductGetAllDto>
+
 <div class="my-3">
     <h6 class="lead">
         <i class="fa fa-filter text-secondary"></i>
@@ -26,7 +31,7 @@
 
         <div class="form-group my-2">
             <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+            <a href="@Url.Action("Index", new { categoryId = Context.Request.Query["categoryId"] })" class="btn btn-sm btn-secondary">Clear Filter</a>
         </div>
-
     </form>
 </div>
